@@ -4,7 +4,7 @@ class RestaurantsController < ApplicationController
   def index
     @q = Restaurant.order(created_at: :desc).ransack(params[:q])
     @restaurants = @q.result.page(params[:page]).per(2)
-    @new_restaurants = Restaurant.order(created_at: :desc).limit(5)
+    @new_restaurants = Restaurant.find_newest_article
   end
 
   def show
