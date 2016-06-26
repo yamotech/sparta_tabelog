@@ -2,7 +2,8 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [ :show, :edit, :update, :destroy]
 
   def index
-    @restaurants = Restaurant.order(created_at: :desc)
+    @q = Restaurant.order(created_at: :desc).ransack(params[:q])
+    @restaurants = @q.result(distinct: true)
     @new_restaurants = Restaurant.order(created_at: :desc).limit(5)
   end
 

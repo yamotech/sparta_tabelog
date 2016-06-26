@@ -1,26 +1,38 @@
-<div class="col-md-8">
-  <% @restaurants.each do |restaurant| %>
-    <div class="article">
-      <h2>店名：<%= restaurant.name %></h2>
-      <p>電話番号：<%= restaurant.tel %></p>
-      <p>住所：<%= restaurant.address %></p>
-      <p>URL：<%= restaurant.url %></p>
-      <p><%= link_to "続きを読む", restaurant, class: "btn btn-default" %></p>
-    </div>
-  <% end %>
-</div>
-
-<div class="col-md-4">
-  <div class="thumbnail">
-    <%= image_tag User.first.image_url, alt: "ユーザーイメージ" %>
-    <div class="caption">
-      <h3>ユーザー名：<%= User.first.name %></h3>
-      <p>詳細：<%= User.first.description %></p>
-    </div>
-  </div>
-  <div class="list-group">
-    <% @new_restaurants.each do |restaurant| %>
-      <%= link_to restaurant.name, restaurant, class: "list-group-item" %>
+<div class="col-md-12">
+  <div class="form-inline pull-right" style="margin-bottom:10px;">
+    <%= search_form_for @q do |f| %>
+      <div class="form-group">
+        <%= f.search_field :name_or_address_cont, placeholder: "店名か住所を検索", class: "form-control" %>
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      </div>
     <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <% @restaurants.each do |restaurant| %>
+      <div class="article">
+        <h2>店名：<%= restaurant.name %></h2>
+        <p>電話番号：<%= restaurant.tel %></p>
+        <p>住所：<%= restaurant.address %></p>
+        <p>URL：<%= restaurant.url %></p>
+        <p><%= link_to "続きを読む", restaurant, class: "btn btn-default" %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <%= image_tag User.first.image_url, alt: "ユーザーイメージ" %>
+      <div class="caption">
+        <h3>ユーザー名：<%= User.first.name %></h3>
+        <p>詳細：<%= User.first.description %></p>
+      </div>
+    </div>
+    <div class="list-group">
+      <% @new_restaurants.each do |restaurant| %>
+        <%= link_to restaurant.name, restaurant, class: "list-group-item" %>
+      <% end %>
+    </div>
   </div>
 </div>
