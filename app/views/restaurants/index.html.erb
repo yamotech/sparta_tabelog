@@ -19,12 +19,8 @@
     </div>
   </div>
   <div class="list-group">
-    <% @restaurants.each_with_index do |restaurant, index| %>
-    <% if index >= 5
-         break
-       end
-    %>
-    <%= link_to restaurant.name, restaurant, class: "list-group-item" %>
+    <% @new_restaurants.each do |restaurant| %>
+      <%= link_to restaurant.name, restaurant, class: "list-group-item" %>
     <% end %>
   </div>
 </div>
